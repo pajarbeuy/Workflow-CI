@@ -39,7 +39,7 @@ jobs:
     - name: Debug MLproject
       run : |
         echo "=== MLPROJECT ==="
-        cat MLProject/MLProject
+        cat MLProject/MLproject
 
         echo ""
         echo "=== Files ==="
