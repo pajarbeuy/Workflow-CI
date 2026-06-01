@@ -7,7 +7,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, f1_score, precision_score, recall_score
 
 tracking_path = "sqlite:///" + str(Path(__file__).parent / "mlruns.db")
-mlflow.set_tracking_uri(tracking_path.as_uri())
+mlflow.set_tracking_uri(tracking_path)
 mlflow.set_experiment("Teen_Mental_Health")
 
 df = pd.read_csv("teen_social_media_preprocessed.csv")
