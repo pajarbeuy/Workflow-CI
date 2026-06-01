@@ -51,6 +51,12 @@ jobs:
       run: |
           ls -la MLProject
           cat MLProject/MLproject
+    - name: Debug Conda Shell
+      run: |
+        which conda
+        conda env list
+        conda info
+        type conda
 
     - name: Run MLflow Project
       run: |
