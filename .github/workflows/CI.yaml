@@ -28,6 +28,10 @@ jobs:
         python-version: 3.12
         auto-activate-base: false
 
+    - name: Check conda
+      run: |
+        which conda
+        conda --version
     - name: Setup Python 3.12.7
       uses: actions/setup-python@v5
       with:
