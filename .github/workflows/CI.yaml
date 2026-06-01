@@ -84,7 +84,7 @@ jobs:
 
     - name: Build Docker Model
       run: |
-        docker build -t teen-mental-health .
+        docker build -t teen-mental-health ./MLProject
 
     - name: Tag Docker Image
       run: |
