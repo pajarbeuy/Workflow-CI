@@ -36,6 +36,15 @@ jobs:
       run: |
         pip install mlflow pandas numpy scikit-learn matplotlib
 
+    - name: Debug MLproject
+      run : |
+        echo "=== MLPROJECT ==="
+        cat MLProject/MLProject
+
+        echo ""
+        echo "=== Files ==="
+        ls -la MLProject
+
     - name: Run MLflow Project
       run: |
         cd MLProject
