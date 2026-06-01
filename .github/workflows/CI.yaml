@@ -21,6 +21,17 @@ jobs:
     - name: Run actions/checkout@v3
       uses: actions/checkout@v4
 
+    - name: Setup Conda
+      uses: conda-incubator/setup-miniconda@v3
+      with:
+        activate-environment: mlflow-env
+        python-version: 3.12
+        auto-activate-base: false
+
+    - name: Check conda
+      run: |
+        which conda
+        conda --version
     - name: Setup Python 3.12.7
       uses: actions/setup-python@v5
       with:
@@ -36,19 +47,28 @@ jobs:
       run: |
         pip install mlflow pandas numpy scikit-learn matplotlib
 
-    - name: Debug MLproject
-      run : |
-        echo "=== MLPROJECT ==="
-        cat MLProject/MLproject
-
-        echo ""
-        echo "=== Files ==="
-        ls -la MLProject
-
-    - name: Run MLflow Project
+    - name: Debug
       run: |
-        cd MLProject
-        mlflow run .
+          ls -la MLProject
+          cat MLProject/MLproject
+    - name: Debug Conda Shell
+      run: |
+        which conda
+        conda env list
+        conda info
+        type conda
+    - name: Test Conda Activation
+      shell: bash -l {0}
+      run: |
+        eval "$(conda shell.bash hook)"
+        conda activate mlflow-env
+        python --version
+       
+    - name: Run MLflow Project
+      env: 
+        MLFLOW_ALLOW_FILE_STORE: "true"
+      run: |
+        mlflow run $GITHUB_WORKSPACE/MLProject --env-manager=local
 
     - name: Upload Artifact
       uses: actions/upload-artifact@v4
