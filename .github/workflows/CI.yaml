@@ -65,6 +65,8 @@ jobs:
         python --version
        
     - name: Run MLflow Project
+      env: 
+        MLFLOW_ALLOW_FILE_STORE: "true"
       run: |
         mlflow run $GITHUB_WORKSPACE/MLProject --env-manager=local
 
